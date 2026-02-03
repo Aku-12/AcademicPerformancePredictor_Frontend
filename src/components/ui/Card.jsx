@@ -4,7 +4,7 @@ export const Card = ({ children, className = '', ...props }) => {
   return (
     <div
       className={cn(
-        'bg-white rounded-lg shadow-sm border border-gray-200',
+        'bg-white rounded-xl border border-gray-100',
         className
       )}
       {...props}
@@ -17,7 +17,7 @@ export const Card = ({ children, className = '', ...props }) => {
 export const CardHeader = ({ children, className = '', ...props }) => {
   return (
     <div
-      className={cn('px-4 py-3 border-b border-gray-100', className)}
+      className={cn('px-6 py-4 border-b border-gray-100', className)}
       {...props}
     >
       {children}
@@ -28,7 +28,7 @@ export const CardHeader = ({ children, className = '', ...props }) => {
 export const CardTitle = ({ children, className = '', ...props }) => {
   return (
     <h3
-      className={cn('text-base font-semibold text-gray-900', className)}
+      className={cn('text-lg font-semibold text-gray-900', className)}
       {...props}
     >
       {children}
@@ -36,9 +36,20 @@ export const CardTitle = ({ children, className = '', ...props }) => {
   );
 };
 
+export const CardDescription = ({ children, className = '', ...props }) => {
+  return (
+    <p
+      className={cn('text-sm text-gray-500 mt-1', className)}
+      {...props}
+    >
+      {children}
+    </p>
+  );
+};
+
 export const CardContent = ({ children, className = '', ...props }) => {
   return (
-    <div className={cn('px-4 py-3', className)} {...props}>
+    <div className={cn('px-6 py-5', className)} {...props}>
       {children}
     </div>
   );
@@ -47,7 +58,7 @@ export const CardContent = ({ children, className = '', ...props }) => {
 export const CardFooter = ({ children, className = '', ...props }) => {
   return (
     <div
-      className={cn('px-4 py-3 border-t border-gray-100 bg-gray-50 rounded-b-lg', className)}
+      className={cn('px-6 py-4 border-t border-gray-100 bg-gray-50/50 rounded-b-xl', className)}
       {...props}
     >
       {children}
