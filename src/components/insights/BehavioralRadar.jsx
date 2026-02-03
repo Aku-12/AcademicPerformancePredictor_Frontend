@@ -10,36 +10,43 @@ const BehavioralRadar = ({ studentProfile, idealProfile }) => {
   }));
 
   return (
-    <div className="w-full h-full">
-      <ResponsiveContainer width="100%" height={400}>
-        <RadarChart data={data}>
-          <PolarGrid stroke="#E5E7EB" />
+    <div className="w-full h-full min-h-[300px]">
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
+          <PolarGrid stroke="#F1F5F9" strokeWidth={1.5} />
           <PolarAngleAxis
             dataKey="dimension"
-            tick={{ fill: '#6B7280', fontSize: 12 }}
+            tick={{ fill: '#64748B', fontSize: 10, fontWeight: 600, dy: 3 }}
           />
           <PolarRadiusAxis
             angle={90}
             domain={[0, 100]}
-            tick={{ fill: '#6B7280', fontSize: 10 }}
+            tick={{ fill: '#CBD5E1', fontSize: 9 }}
+            axisLine={false}
           />
           <Radar
             name="Your Profile"
             dataKey="student"
-            stroke="#3B82F6"
-            fill="#3B82F6"
-            fillOpacity={0.5}
+            stroke="#4F46E5" // indigo-600
+            strokeWidth={2}
+            fill="#4F46E5"
+            fillOpacity={0.4}
           />
           {idealProfile && (
             <Radar
-              name="Ideal Profile"
+              name="Ideal Goal"
               dataKey="ideal"
-              stroke="#10B981"
+              stroke="#10B981" // emerald-500
+              strokeWidth={1.5}
               fill="#10B981"
-              fillOpacity={0.2}
+              fillOpacity={0.05}
+              strokeDasharray="4 4"
             />
           )}
-          <Legend />
+          <Legend 
+            wrapperStyle={{ paddingTop: '10px' }}
+            formatter={(value) => <span className="text-xs text-gray-500 font-semibold ml-1">{value}</span>}
+          />
         </RadarChart>
       </ResponsiveContainer>
     </div>
