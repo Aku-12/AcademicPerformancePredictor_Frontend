@@ -1,22 +1,30 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MainLayout } from './layouts';
-import { HomePage, PredictPage, ModelStatusPage, AboutPage, InsightsPage } from './pages';
-import './App.css';
+import { useStudentStore } from './store/useStudentStore';
+import UnifiedLayout from './layouts/UnifiedLayout';
+import InputPanel from './components/dashboard/InputPanel';
+import AnalyticsDashboard from './components/dashboard/AnalyticsDashboard';
+import BatchAnalyticsDashboard from './components/dashboard/BatchAnalyticsDashboard';
+import StatusWidget from './components/dashboard/StatusWidget';
 
-function App() {
+const App = () => {
+  const { predictionResult, studentProfile, isBatchMode, batchData, batchResults, resetProfile } = useStudentStore();
+
   return (
-    <Router>
-      <MainLayout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/predict" element={<PredictPage />} />
-          <Route path="/insights" element={<InsightsPage />} />
-          <Route path="/model-status" element={<ModelStatusPage />} />
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-      </MainLayout>
-    </Router>
+    <UnifiedLayout
+      statusWidget={<StatusWidget />}
+      inputPanel={<InputPanel />}
+      analyticsPanel={
+        isBatchMode ? (
+          <BatchAnalyticsDashboard 
+            batchData={batchData} 
+            results={batchResults} 
+            onReset={resetProfile} // Resets to single mode
+          />
+        ) : (
+          <AnalyticsDashboard result={predictionResult} studentData={studentProfile} />
+        )
+      }
+    />
   );
-}
+};
 
 export default App;
