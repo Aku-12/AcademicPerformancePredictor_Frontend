@@ -92,7 +92,7 @@ export const InputPanel = () => {
       <SectionHeader title="Personal Profile" />
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-3">
-          <Input label="Age" name="current_age" type="number" placeholder="18-25" value={values.current_age || ''} onChange={handleChange} error={errors.current_age} className="text-sm bg-white border-gray-200 focus:border-indigo-500 focus:ring-0 rounded-lg" />
+          <Input label="Age" name="current_age" type="number" placeholder="18-25" min={18} max={25} value={values.current_age || ''} onChange={handleChange} error={errors.current_age} className="text-sm bg-white border-gray-200 focus:border-indigo-500 focus:ring-0 rounded-lg" />
           <Select label="Gender" name="gender" options={GENDER_OPTIONS} value={values.gender} onChange={handleChange} className="text-sm bg-white border-gray-200 focus:border-indigo-500 focus:ring-0 rounded-lg" />
         </div>
         <Select label="Program" name="program" options={PROGRAM_OPTIONS} value={values.program} onChange={handleChange} className="text-sm bg-white border-gray-200 focus:border-indigo-500 focus:ring-0 rounded-lg" />

@@ -58,6 +58,16 @@ export const ExcelUploader = ({ onUploadComplete }) => {
         throw new Error('No valid rows found.');
       }
 
+      // Validate age range (18-25)
+      const invalidAgeStudents = allStudents.filter(s => {
+        const age = Number(s.current_age);
+        return age < 18 || age > 25;
+      });
+
+      if (invalidAgeStudents.length > 0) {
+        throw new Error(`${invalidAgeStudents.length} student(s) have age outside valid range (18-25). Please correct the data.`);
+      }
+
       // Check if it's a single student or batch
       if (allStudents.length === 1) {
         onUploadComplete(allStudents[0], false); // isBatch = false
